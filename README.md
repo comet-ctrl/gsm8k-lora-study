@@ -39,8 +39,8 @@ The 2k experiment also changes rank, alpha, epochs, and learning rate, so the di
 The practice exercise and coursework record are complete. A clean, reproducible training run has **not** been verified during this repository cleanup.
 
 - Setup installs unpinned dependencies; saved logs include dependency conflicts and optional-library warnings.
-- In section B.12, the five prompt variants use `\boxed` in ordinary Python strings, where `\b` becomes a backspace character. Before rerunning this section, use raw strings or escape the backslash. Its saved scores and conclusions should be revisited after that correction.
-- The original notebook and outputs are preserved as a coursework record.
+- The five B.12 prompt variants now use raw strings so `\boxed` reaches the model correctly. Saved B.12 scores and conclusions predate this fix and must be rerun before interpreting the corrected prompts' performance.
+- Historical notebook outputs are preserved as a coursework record; they are not results from the corrected prompts.
 
 ## Download with Git
 
