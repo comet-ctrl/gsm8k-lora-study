@@ -1,0 +1,6 @@
+experiment,correct,total
+Base / zero-shot,36,100
+LoRA 1k / zero-shot,41,100
+LoRA 2k / zero-shot,44,100
+Base / three-shot,34,100
+LoRA 2k / three-shot,47,100

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+runs/
+.env*
+*.safetensors
+*.bin
+*.pt
+*.zip
+*.pdf
+*.docx
+*.egg-info/
