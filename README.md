@@ -54,10 +54,7 @@ python -m pip install matplotlib==3.10.6 jupyterlab
 jupyter lab math_reasoning.ipynb
 ```
 
-**What happens when you select Run All?** The notebook sets `RUN_EXPERIMENTS = False` in its configuration
-cell. It recreates the chart from the saved results, checks answer scoring and data splits, and defines
-the experiment helpers. The model-running section is guarded by `if RUN_EXPERIMENTS:`, so it is skipped.
-This is what “review mode” means; it is a notebook setting, not a special Jupyter feature.
+**Run All** recreates the results chart and runs basic checks. Model downloads and training are off by default.
 
 To run new model experiments, install the full dependencies:
 
@@ -66,8 +63,7 @@ python -m pip install -r requirements.txt
 ```
 
 For GPU use, first install the appropriate [PyTorch 2.8.0 CUDA build](https://pytorch.org/get-started/previous-versions/#v280).
-Then change the configuration cell to `RUN_EXPERIMENTS = True` and run the notebook again.
-That enables model/dataset downloads, inference, and training. Full training needs suitable hardware; 4 GB VRAM is not
+Then set `RUN_EXPERIMENTS = True` in the notebook and run it again. Full training needs suitable hardware; 4 GB VRAM is not
 validated. CPU runs are supported but slow. The fresh full-model benchmark has not been rerun.
 
 ## What's included
