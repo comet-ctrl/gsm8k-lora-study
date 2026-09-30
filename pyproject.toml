@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=77,<81"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gsm8k-reasoning-lab"
+version = "0.1.0"
+description = "Compare prompting and LoRA fine-tuning for mathematical reasoning."
+requires-python = ">=3.11,<3.14"
+dependencies = []
+
+[project.optional-dependencies]
+ml = [
+  "torch==2.8.0",
+  "transformers==4.57.1",
+  "peft==0.17.1",
+  "datasets==4.2.0",
+  "accelerate==1.10.1",
+]
+notebook = ["jupyterlab>=4.4,<5"]
+
+[project.scripts]
+gsm8k-lab = "gsm8k_lab.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
