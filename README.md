@@ -6,7 +6,10 @@ I evaluated **Qwen2.5-1.5B-Instruct** on GSM8K, trained LoRA adapters, and compa
 three-shot prompting. The best recorded setup answered **47 out of 100 questions correctly**,
 compared with **36 out of 100** for the base model.
 
-**[Read the notebook →](math_reasoning.ipynb)**
+**Just browsing? [Open the notebook →](math_reasoning.ipynb)—no setup needed.**
+
+Read the explanations and code directly on GitHub. The results chart is shown below;
+installation is only needed if you want to run the cells yourself.
 
 ![Historical accuracy comparison across five model and prompting configurations](assets/results.png)
 
@@ -31,7 +34,7 @@ a Python escape bug is excluded. See [result provenance](results/README.md).
 The optional rerun section uses a revised protocol with disjoint development, training, and demonstration
 pools, fixed adapter settings, fresh prompts, and stricter scoring. Its results are saved separately.
 
-## Run the notebook
+## Run it yourself (optional)
 
 Use Python 3.12 and clone the repository:
 
@@ -42,7 +45,7 @@ python -m venv .venv
 ```
 
 Activate with `.\.venv\Scripts\Activate.ps1` in Windows PowerShell, or `source .venv/bin/activate`
-on macOS/Linux. To read and run the historical analysis without installing the model libraries:
+on macOS/Linux. To recreate the chart from the saved results, install JupyterLab and the plotting library:
 
 ```bash
 python -m pip install matplotlib==3.10.6 jupyterlab
@@ -50,7 +53,7 @@ jupyter lab math_reasoning.ipynb
 ```
 
 **Run All defaults to review mode:** it displays the chart and checks helper functions without downloading
-a model or starting training. The optional experiment requires the full dependencies:
+a model or starting training. To run new model experiments, install the full dependencies:
 
 ```bash
 python -m pip install -r requirements.txt
@@ -62,9 +65,10 @@ validated. CPU runs are supported but slow. The fresh full-model benchmark has n
 
 ## What's included
 
-- **One notebook:** method, chart, error analysis, and self-contained optional training/evaluation code.
-- **One results table:** aggregate historical counts; no raw coursework exports.
-- **Dependencies:** packages needed to run the full experiment.
+- **[Notebook — math_reasoning.ipynb](math_reasoning.ipynb):** method, chart, error analysis, and self-contained optional training/evaluation code.
+- **[Results table — historical_summary.csv](results/historical_summary.csv):** aggregate historical counts; no raw coursework exports.
+- **[Dependencies — requirements.txt](requirements.txt):** packages needed to run the full experiment.
+- **[Results notes — results/README.md](results/README.md):** where the recorded results came from and how to interpret them.
 
 The original experiments used educational helper code plus Hugging Face libraries. This portfolio
 version uses newly written helpers and credits [Qwen](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct),
