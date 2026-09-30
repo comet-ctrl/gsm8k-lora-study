@@ -1,11 +1,10 @@
 # GSM8K LoRA Study
 
-### Fine-tuning and prompting for mathematical reasoning
+### Can a small language model get better at math?
 
-Can lightweight fine-tuning help a small language model solve more math word problems?
-
-I evaluated **Qwen2.5-1.5B-Instruct** on GSM8K, trained LoRA adapters, and compared zero-shot and
-three-shot prompting. The best recorded setup answered **47 out of 100 questions correctly**,
+I tested **Qwen2.5-1.5B-Instruct** on GSM8K, a dataset of math word problems. I used LoRA to train
+a small set of extra model weights, then compared prompts with no examples (zero-shot) and three
+examples (three-shot). The best recorded setup answered **47 out of 100 questions correctly**,
 compared with **36 out of 100** for the base model.
 
 **Just browsing? [Open the notebook →](math_reasoning.ipynb)—no setup needed.**
@@ -17,24 +16,26 @@ installation is only needed if you want to run the cells yourself.
 
 ## What I learned
 
-- The combined adapter and three-shot setup improved accuracy by **11 percentage points** on this sample.
-- Gains were uneven: it corrected **26** baseline errors but introduced **15** new errors.
-- Three-shot prompting alone did not help the base model here: **34%**, versus **36%** without examples.
-- Correct formatting and fluent explanations did not guarantee correct reasoning.
+- The trained model with three examples answered **11 more questions correctly** than the base model.
+- It fixed **26** wrong answers but got **15** previously correct answers wrong.
+- Giving the base model three examples did not help here: **34%**, versus **36%** without examples.
+- A clear, well-formatted answer could still contain reasoning mistakes.
 
-The notebook shows an overtime calculation that improved and an egg-sales problem that regressed,
-then explains the experimental limitations and how to run a fresh comparison.
+The notebook shows one answer that improved and one that got worse, explains the limits of the study,
+and includes code for trying a new experiment.
 
-## How to interpret the results
+## About these results
 
-These are **historical notebook results**, checked against saved evaluations, not a fresh reproduction.
-All five configurations used the same first 100 test questions. The 1k and 2k training runs also changed
-rank, learning rate, and epochs, so their difference cannot be attributed to training size alone.
-The best configuration combines fine-tuning and prompting changes. A later prompt sweep affected by
-a Python escape bug is excluded. See [result provenance](results/README.md).
+These numbers come from **earlier saved runs**. I checked them against the saved answers, but have not
+repeated the full experiment with this cleaned notebook. All five setups used the same first 100 test questions.
 
-The optional rerun section uses a revised protocol with disjoint development, training, and demonstration
-pools, fixed adapter settings, fresh prompts, and stricter scoring. Its results are saved separately.
+Several training settings changed between the 1,000-example and 2,000-example runs, so more training data
+may not be the only reason their scores differ. The best setup also changed both training and prompting.
+A separate prompt comparison had a Python escape bug, so its scores are left out.
+See the [results notes](results/README.md) for details.
+
+The new experiment code keeps training, prompt examples, and development questions separate. It also
+uses updated prompts and stricter answer checks, so new scores may differ from the saved results.
 
 ## Run it yourself (optional)
 
@@ -56,26 +57,26 @@ jupyter lab math_reasoning.ipynb
 
 **Run All** recreates the results chart and runs basic checks. Model downloads and training are off by default.
 
-To run new model experiments, install the full dependencies:
+To train and test the model yourself, install the remaining packages:
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-For GPU use, first install the appropriate [PyTorch 2.8.0 CUDA build](https://pytorch.org/get-started/previous-versions/#v280).
-Then set `RUN_EXPERIMENTS = True` in the notebook and run it again. Full training needs suitable hardware; 4 GB VRAM is not
-validated. CPU runs are supported but slow. The fresh full-model benchmark has not been rerun.
+If you use an NVIDIA GPU, install the matching [PyTorch 2.8.0 CUDA version](https://pytorch.org/get-started/previous-versions/#v280)
+before installing those packages. Then set `RUN_EXPERIMENTS = True` in the notebook and run it again.
+Training can be demanding: a CPU will be slow, and training on a 4 GB GPU has not been tested.
 
 ## What's included
 
-- **[Notebook — math_reasoning.ipynb](math_reasoning.ipynb):** method, chart, error analysis, and self-contained optional training/evaluation code.
-- **[Results table — historical_summary.csv](results/historical_summary.csv):** aggregate historical counts; no raw coursework exports.
-- **[Dependencies — requirements.txt](requirements.txt):** packages needed to run the full experiment.
-- **[Results notes — results/README.md](results/README.md):** where the recorded results came from and how to interpret them.
+- **[Notebook — math_reasoning.ipynb](math_reasoning.ipynb):** the approach, results, example mistakes, and code for new experiments.
+- **[Results table — historical_summary.csv](results/historical_summary.csv):** correct-answer counts from the earlier runs.
+- **[Required packages — requirements.txt](requirements.txt):** what to install to run the full experiment.
+- **[Results notes — results/README.md](results/README.md):** where the numbers came from and what they can tell us.
 
-The original experiments used educational helper code plus Hugging Face libraries. This portfolio
-version uses newly written helpers and credits [Qwen](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct),
+The original experiments used supplied learning code and Hugging Face libraries. This version uses
+newly written helpers and builds on [Qwen](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct),
 [GSM8K](https://huggingface.co/datasets/openai/gsm8k), and [LoRA](https://arxiv.org/abs/2106.09685).
-Original assignment documents, private links, submission IDs, and notebook outputs are excluded.
-Generated artifacts stay under ignored `runs/`; clear notebook outputs and review metadata before sharing.
-Deleting old files from this version does not erase existing Git history.
+Original assignment files and private details are not included in this version. New experiment files go
+in `runs/`, which Git ignores. Before sharing your notebook, clear its outputs and check for private details.
+Files removed from this version may still exist in older Git commits.
