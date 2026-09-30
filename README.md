@@ -71,8 +71,8 @@ Training can be demanding: a CPU will be slow, and training on a 4 GB GPU has no
 
 - **[Notebook — math_reasoning.ipynb](math_reasoning.ipynb):** the approach, results, example mistakes, and code for new experiments.
 - **[Results table — historical_summary.csv](results/historical_summary.csv):** correct-answer counts from the earlier runs.
-- **[Required packages — requirements.txt](requirements.txt):** what to install to run the full experiment.
 - **[Results notes — results/README.md](results/README.md):** where the numbers came from and what they can tell us.
+- **[Required packages — requirements.txt](requirements.txt):** what to install to run the full experiment.
 
 The original experiments used supplied learning code and Hugging Face libraries. This version uses
 newly written helpers and builds on [Qwen](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct),
