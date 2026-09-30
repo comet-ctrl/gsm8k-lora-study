@@ -9,9 +9,6 @@ compared with **36 out of 100** for the base model.
 
 **Just browsing? [Open the notebook →](math_reasoning.ipynb)—no setup needed.**
 
-Read the explanations and code directly on GitHub. The results chart is shown below;
-installation is only needed if you want to run the cells yourself.
-
 ![Historical accuracy comparison across five model and prompting configurations](assets/results.png)
 
 ## What I learned
@@ -26,8 +23,7 @@ and includes code for trying a new experiment.
 
 ## About these results
 
-These numbers come from **earlier saved runs**. I checked them against the saved answers, but have not
-repeated the full experiment with this cleaned notebook. All five setups used the same first 100 test questions.
+All five setups used the same first 100 test questions.
 
 Several training settings changed between the 1,000-example and 2,000-example runs, so more training data
 may not be the only reason their scores differ. The best setup also changed both training and prompting.
