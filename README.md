@@ -1,4 +1,6 @@
-# Improving Math Reasoning with LoRA
+# GSM8K LoRA Study
+
+### Fine-tuning and prompting for mathematical reasoning
 
 Can lightweight fine-tuning help a small language model solve more math word problems?
 
@@ -39,8 +41,8 @@ pools, fixed adapter settings, fresh prompts, and stricter scoring. Its results 
 Use Python 3.12 and clone the repository:
 
 ```bash
-git clone https://github.com/comet-ctrl/open-source.git
-cd open-source
+git clone https://github.com/comet-ctrl/gsm8k-lora-study.git
+cd gsm8k-lora-study
 python -m venv .venv
 ```
 
@@ -52,15 +54,20 @@ python -m pip install matplotlib==3.10.6 jupyterlab
 jupyter lab math_reasoning.ipynb
 ```
 
-**Run All defaults to review mode:** it displays the chart and checks helper functions without downloading
-a model or starting training. To run new model experiments, install the full dependencies:
+**What happens when you select Run All?** The notebook sets `RUN_EXPERIMENTS = False` in its configuration
+cell. It recreates the chart from the saved results, checks answer scoring and data splits, and defines
+the experiment helpers. The model-running section is guarded by `if RUN_EXPERIMENTS:`, so it is skipped.
+This is what “review mode” means; it is a notebook setting, not a special Jupyter feature.
+
+To run new model experiments, install the full dependencies:
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
 For GPU use, first install the appropriate [PyTorch 2.8.0 CUDA build](https://pytorch.org/get-started/previous-versions/#v280).
-Then enable `RUN_EXPERIMENTS` in the notebook. Full training needs suitable hardware; 4 GB VRAM is not
+Then change the configuration cell to `RUN_EXPERIMENTS = True` and run the notebook again.
+That enables model/dataset downloads, inference, and training. Full training needs suitable hardware; 4 GB VRAM is not
 validated. CPU runs are supported but slow. The fresh full-model benchmark has not been rerun.
 
 ## What's included
