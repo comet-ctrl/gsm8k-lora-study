@@ -1,0 +1,7 @@
+torch==2.8.0
+transformers==4.57.1
+peft==0.17.1
+datasets==4.2.0
+accelerate==1.10.1
+matplotlib==3.10.6
+jupyterlab>=4.4,<5
